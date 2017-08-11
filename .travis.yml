@@ -7,7 +7,7 @@ services:
 
 before_install:
  - docker pull quay.io/pypa/manylinux1_x86_64
- - docker run quay.io/pypa/manylinux1_x86_64 ls
+ - docker run -v $PWD:/project quay.io/pypa/manylinux1_x86_64 sh project/build.sh
 
 script:
  - docker run quay.io/pypa/manylinux1_x86_64 ls
