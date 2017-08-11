@@ -41,7 +41,7 @@ ls local/lib
 curl http://software.ligo.org/lscsoft/source/metaio-8.4.0.tar.gz > metaio.tar.gz
 tar -xf metaio.tar.gz
 cd metaio-*
-./configure --prefix=$PWD/../loca
+./configure --prefix=$PWD/../local
 make -j install
 cd ../
 
