@@ -4,10 +4,26 @@ NUMPY_VERSION=1.19
 mkdir local
 export PATH=$PATH:/opt/python/cp27-cp27m/bin/
 
-yum install -y zlib-devel
-
+yum install -y zlib-devel gsl-devel *fftw3* *pcre*
 # Install numpy
 pip install numpy=='1.13.0'
+
+# Install swig
+wget https://downloads.sourceforge.net/project/swig/swig/swig-3.0.12/swig-3.0.12.tar.gz --no-check-certificate
+tar -xvf swig-3.0.12.tar.gz 
+cd swig-3.0.12/
+./configure --with-python -prefix=$PWD/../local
+make -j
+make -j install
+cd ../
+
+# Install hdf5
+curl https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.12/src/hdf5-1.8.12.tar.gz > hdf5-1.8.12.tar.gz
+tar -zxvf hdf5-1.8.12.tar.gz
+cd hdf5-1.8.12
+./configure --prefix=$PWD/../local
+make -jls install
+cd ../
 
 # Install libframe
 curl http://lappweb.in2p3.fr/virgo/FrameL/libframe-8.30.tar.gz > libframe.tar.gz
