@@ -10,9 +10,9 @@ yum install -y zlib-devel gsl-devel *fftw3* *pcre*
 pip install numpy=='1.13.0'
 
 # Install swig
-wget https://downloads.sourceforge.net/project/swig/swig/swig-3.0.12/swig-3.0.12.tar.gz --no-check-certificate
-tar -xvf swig-3.0.12.tar.gz 
-cd swig-3.0.12/
+wget https://www.atlas.aei.uni-hannover.de/~bema/tarballs/swig-3.0.7.tar.gz
+tar -xvf swig-3.0.7.tar.gz 
+cd swig-3.0.7/
 ./configure --with-python -prefix=$PWD/../local
 make -j
 make -j install
