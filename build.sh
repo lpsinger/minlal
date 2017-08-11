@@ -7,6 +7,8 @@ export PKG_CONFIG_PATH=$PWD/local/lib/pkgconfig
 yum install -y zlib-devel gsl-devel *fftw3* *pcre* mlocate chrpath
 # Install numpy
 pip install numpy=='1.13.0'
+pip install twine
+pip install wheel
 
 # Install swig
 wget https://www.atlas.aei.uni-hannover.de/~bema/tarballs/swig-3.0.7.tar.gz
