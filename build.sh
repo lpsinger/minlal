@@ -36,7 +36,6 @@ make -j install
 cd ../
 
 ls local/lib
-exit
 
 # Install libmetaio
 curl http://software.ligo.org/lscsoft/source/metaio-8.4.0.tar.gz > metaio.tar.gz
