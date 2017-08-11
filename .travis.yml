@@ -7,3 +7,6 @@ services:
 before_install:
  - docker pull quay.io/pypa/manylinux1_x86_64
  - docker run quay.io/pypa/manylinux1_x86_64 ls
+
+script:
+ - docker run quay.io/pypa/manylinux1_x86_64 ls
