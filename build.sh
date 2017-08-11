@@ -66,9 +66,7 @@ cd ..
 
 # Grab the libraries we need
 updatedb
-cd project
-mkdir blal
-cd blal
+cd project/blal
 while read line
 do
     file=`locate $line | grep --invert-match /usr/lib/ | grep --invert-match /lib/ | head -1`
