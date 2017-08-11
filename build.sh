@@ -2,7 +2,8 @@ LALSUITE_VERSION=6.48
 NUMPY_VERSION=1.19
 
 mkdir local
-export PATH=$PATH:/opt/python/cp27-cp27m/bin/
+export PATH=$PATH:/opt/python/cp27-cp27m/bin/:$PWD/local/bin
+export PKG_CONFIG_PATH=$PWD/local/lib/pkg-config
 
 yum install -y zlib-devel gsl-devel *fftw3* *pcre*
 # Install numpy
@@ -33,6 +34,9 @@ cd libframe-*
 make -j install
 cd ../
 
+ls local/lib
+exit
+
 # Install libmetaio
 curl http://software.ligo.org/lscsoft/source/metaio-8.4.0.tar.gz > metaio.tar.gz
 tar -xf metaio.tar.gz
@@ -48,7 +52,7 @@ cd lalsuite*
 
 ./00boot
 ./configure \
---prefix=$PWD/../loca \
+--prefix=$PWD/../local \
 --enable-swig-python \
 --disable-lalapps \
 --disable-lalinference \
