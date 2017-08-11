@@ -11,3 +11,12 @@ before_install:
 
 script:
  - docker run quay.io/pypa/manylinux1_x86_64 ls
+ 
+deploy:
+  provider: pypi
+  user: ahnitz
+  password:
+    secure: "GWintuGmB6rZJ+VEvd/sY9xUnNhTANLcrw1YMgeZdP08mgJRCfnRzMh5aWq7oytoOp/XWIdYuX5EbqrYZ/7moVC4hUoSKFRGuvyuoZw4SAkX+fGvypDHJIU76VK+ZpHA+qEGpYASb7YI/Uq21jSaYKMKSJxBn3G4jH1HHBUtWujZVir+XXbRecFPkKSgAN2dZ8Qbhv+XqljoLw3MU3voa3L0mQC0M69yZRUMffruT2HYqg9H9O7rJ70m1WTUtPokFXX3bnufRwUGBtt9edr3kOuRjWk4QtFlKePNHHSSXSCxq619VOatDQO7t30G66mnfz3zQypBfr3SowWAA8nLYr5OkWLgvBns8E9xWoMeZNn5bzc4S0bzf2v6vZuFHPor5wWLMSslxwLmyTKDe0R6z7inbXHNEa0nLcXvR5EtPAtmpwb6zsfxA2906AV/5B10Uo0OMRkKkboKZOmb2gTbyYDbZWl3VN6aG6MBiF4OozTnl2x7OKIR5k+zftSiwIsGFytvrAIBfjNeo+dC+8RrXL5A7Rv3JV+C8pwjK9lVv1HtWdqCm1WgWDmKIDm1vfS9H3ZqViAcYm1p1BbQ4VqQp6DsNP9fET2Jd5c2ge4DGLc/4Hm1A53PwDhr1DiEa9mBtOomTdEQzdz5byK+I9ngiJMmfx7XebDzPjlSkOz4h6c="
+  on:
+    tags: true
+  distributions: "bdist_wheel"

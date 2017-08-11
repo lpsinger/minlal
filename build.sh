@@ -7,8 +7,6 @@ export PKG_CONFIG_PATH=$PWD/local/lib/pkgconfig
 yum install -y zlib-devel gsl-devel *fftw3* *pcre* mlocate chrpath
 # Install numpy
 pip install numpy=='1.13.0'
-pip install twine
-pip install wheel
 
 # Install swig
 wget https://www.atlas.aei.uni-hannover.de/~bema/tarballs/swig-3.0.7.tar.gz
@@ -68,7 +66,7 @@ cd ..
 
 # Grab the libraries we need
 updatedb
-cd project/blal
+cd /project/blal
 while read line
 do
     file=`locate $line | grep --invert-match /usr/lib/ | grep --invert-match /lib/ | head -1`
@@ -76,7 +74,3 @@ do
     chmod 777 $file
     cp $file ./
 done < ../libs
-
-
-
-
