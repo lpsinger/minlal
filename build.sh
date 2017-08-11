@@ -1,11 +1,10 @@
 LALSUITE_VERSION=6.48
-NUMPY_VERSION=1.19
 
 mkdir local
-export PATH=$PATH:/opt/python/cp27-cp27m/bin/:$PWD/local/bin
+export PATH=$PATH:/opt/python/cp27-cp27mu/bin/:$PWD/local/bin
 export PKG_CONFIG_PATH=$PWD/local/lib/pkgconfig
 
-yum install -y zlib-devel gsl-devel *fftw3* *pcre*
+yum install -y zlib-devel gsl-devel *fftw3* *pcre* mlocate chrpath
 # Install numpy
 pip install numpy=='1.13.0'
 
@@ -46,9 +45,9 @@ make -j install
 cd ../
 
 # Install lalsuite
-curl https://codeload.github.com/lscsoft/lalsuite/zip/lalsuite-v$LALSUITE_VERSION > lalsuite.zip
-unzip lalsuite.zip 1> /dev/null
-cd lalsuite*
+git clone https://github.com/lscsoft/lalsuite.git
+cd lalsuite
+git checkout lalsuite-v$LALSUITE_VERSION
 
 ./00boot
 ./configure \
@@ -65,4 +64,19 @@ cd lalsuite*
 make -j install
 cd ..
 
-ls
+# Grab the libraries we need
+updatedb
+cd project
+mkdir blal
+cd blal
+while read line
+do
+    file=`locate $line | grep --invert-match /usr/lib/ | grep --invert-match /lib/ | head -1`
+    chrpath -r '$ORIGIN' $file
+    chmod 777 $file
+    cp $file ./
+done < ../libs
+
+
+
+
