@@ -3,7 +3,7 @@ NUMPY_VERSION=1.19
 
 mkdir local
 export PATH=$PATH:/opt/python/cp27-cp27m/bin/:$PWD/local/bin
-export PKG_CONFIG_PATH=$PWD/local/lib/pkg-config
+export PKG_CONFIG_PATH=$PWD/local/lib/pkgconfig
 
 yum install -y zlib-devel gsl-devel *fftw3* *pcre*
 # Install numpy
@@ -23,7 +23,8 @@ curl https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.12/src/hdf
 tar -zxvf hdf5-1.8.12.tar.gz
 cd hdf5-1.8.12
 ./configure --prefix=$PWD/../local
-make -jls install
+make -j
+make -j install
 cd ../
 
 # Install libframe
