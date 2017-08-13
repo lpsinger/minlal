@@ -1,30 +1,23 @@
+# I have no idea how to build things on mac, this is going to be rough....
 LALSUITE_VERSION=6.48
 
+
 mkdir local
-export PATH=$PATH:/opt/python/cp27-cp27mu/bin/:$PWD/local/bin
+
+export PATH=$PATH:$PWD/local/bin:$HOME/Library/Python/2.7/bin
 export PKG_CONFIG_PATH=$PWD/local/lib/pkgconfig
 
-yum install -y zlib-devel gsl-devel *fftw3* *pcre* mlocate chrpath
+brew install fftw hdf5 gsl lzlib swig gsl
+
+wget https://bootstrap.pypa.io/get-pip.py
+python get-pip.py --user
+
+ls $HOME/Library/Python/2.7
+ls $HOME/Library/Python/2.7/bin
+
+
 # Install numpy
-pip install numpy=='1.13.0'
-
-# Install swig
-wget https://www.atlas.aei.uni-hannover.de/~bema/tarballs/swig-3.0.7.tar.gz
-tar -xvf swig-3.0.7.tar.gz 
-cd swig-3.0.7/
-./configure --with-python -prefix=$PWD/../local
-make -j
-make -j install
-cd ../
-
-# Install hdf5
-curl https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.12/src/hdf5-1.8.12.tar.gz > hdf5-1.8.12.tar.gz
-tar -zxvf hdf5-1.8.12.tar.gz
-cd hdf5-1.8.12
-./configure --prefix=$PWD/../local
-make -j
-make -j install
-cd ../
+pip install --user numpy=='1.13.0' delocate virtualenv
 
 # Install libframe
 curl http://lappweb.in2p3.fr/virgo/FrameL/libframe-8.30.tar.gz > libframe.tar.gz
@@ -33,8 +26,6 @@ cd libframe-*
 ./configure --prefix=$PWD/../local
 make -j install
 cd ../
-
-ls local/lib
 
 # Install libmetaio
 curl http://software.ligo.org/lscsoft/source/metaio-8.4.0.tar.gz > metaio.tar.gz
@@ -64,13 +55,22 @@ git checkout lalsuite-v$LALSUITE_VERSION
 make -j install
 cd ..
 
+cp local/lib/python2.7/site-packages/lal/_lal.so blal/_lal.so
+cp local/lib/python2.7/site-packages/lalframe/_lalframe.so blal/_lalframe.so
+cp local/lib/python2.7/site-packages/lalsimulation/_lalsimulation.so blal/_lalsimulation.so
+
+ls local/lib
+ls local/lib/python2.7
+ls local/lib/python2.7/site-packages/
 # Grab the libraries we need
-updatedb
-cd /project/blal
+
+delocate-listdeps blal > maclibs
 while read line
 do
-    file=`locate $line | grep --invert-match /usr/lib/ | grep --invert-match /lib/ | head -1`
-    chrpath -r '$ORIGIN' $file
-    chmod 777 $file
-    cp $file ./
-done < ../libs
+    file=`basename ${line}`
+    cp $line blal/$file
+    chmod 777 blal/$file
+    install_name_tool -add_rpath "@loader_path" blal/$file
+    echo $file
+done < maclibs
+ls
