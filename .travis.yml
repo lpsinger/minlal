@@ -9,7 +9,10 @@ matrix:
     - os: osx
       language: generic
       env: TOXENV=py27
-      osx_image: xcode6.4
+    - os: osx
+      language: generic
+      env: TOXENV=py27
+      osx_image: xcode8
 
 services:
  - docker
