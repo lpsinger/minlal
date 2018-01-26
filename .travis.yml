@@ -9,9 +9,6 @@ matrix:
     - os: osx
       language: generic
       env: TOXENV=py27
-    - os: osx
-      language: generic
-      env: TOXENV=py27
       osx_image: xcode8
 
 services:
@@ -24,6 +21,12 @@ before_install:
 
 script:
  - bash test.sh
+
+before_deploy:
+ - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then 
+        export PATH=$PATH:$PWD/local/bin:/Users/travis/Library/Python/2.7/bin; 
+        ls; 
+   fi
 
 deploy:
   provider: pypi

@@ -7,7 +7,8 @@ mkdir local
 export PATH=$PATH:$PWD/local/bin:$HOME/Library/Python/2.7/bin
 export PKG_CONFIG_PATH=$PWD/local/lib/pkgconfig
 
-brew install fftw hdf5 gsl lzlib swig gsl
+brew update
+brew install fftw hdf5 gsl zlib swig gsl
 
 wget https://bootstrap.pypa.io/get-pip.py
 python get-pip.py --user
@@ -17,7 +18,15 @@ ls $HOME/Library/Python/2.7/bin
 
 
 # Install numpy
-pip install --user numpy=='1.13.0' delocate virtualenv
+pip install --user numpy=='1.13.0' delocate virtualenv wheel twine
+
+# Libz (maybe needed for Mac < 10.12
+curl https://codeload.github.com/madler/zlib/tar.gz/v1.2.11 > v1.2.11.tar.gz
+tar -xvf v1.2.11.tar.gz 
+cd zlib-1.2.11/
+./configure --prefix=$PWD/../local
+make -j install
+cd ../
 
 # Install libframe
 curl http://lappweb.in2p3.fr/virgo/FrameL/libframe-8.30.tar.gz > libframe.tar.gz
