@@ -1,6 +1,6 @@
 # I have no idea how to build things on mac, this is going to be rough....
 LALSUITE_VERSION=6.48
-
+set -x
 
 mkdir local
 
@@ -68,12 +68,11 @@ cp local/lib/python2.7/site-packages/lal/_lal.so blal/_lal.so
 cp local/lib/python2.7/site-packages/lalframe/_lalframe.so blal/_lalframe.so
 cp local/lib/python2.7/site-packages/lalsimulation/_lalsimulation.so blal/_lalsimulation.so
 
-ls local/lib
-ls local/lib/python2.7
-ls local/lib/python2.7/site-packages/
-# Grab the libraries we need
+ls blal
 
 delocate-listdeps blal > maclibs
+cat maclibs
+
 while read line
 do
     file=`basename ${line}`
