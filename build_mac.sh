@@ -1,7 +1,5 @@
 # I have no idea how to build things on mac, this is going to be rough....
 LALSUITE_VERSION=6.48
-set -x
-
 mkdir local
 
 export PATH=$PATH:$PWD/local/bin:$HOME/Library/Python/2.7/bin
@@ -68,10 +66,7 @@ cp local/lib/python2.7/site-packages/lal/_lal.so blal/_lal.so
 cp local/lib/python2.7/site-packages/lalframe/_lalframe.so blal/_lalframe.so
 cp local/lib/python2.7/site-packages/lalsimulation/_lalsimulation.so blal/_lalsimulation.so
 
-ls blal
-
 delocate-listdeps blal > maclibs
-cat maclibs
 
 while read line
 do
@@ -81,4 +76,4 @@ do
     install_name_tool -add_rpath "@loader_path" blal/$file
     echo $file
 done < maclibs
-ls
+ls blal
