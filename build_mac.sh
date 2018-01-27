@@ -61,7 +61,7 @@ git checkout lalsuite-v$LALSUITE_VERSION
 --disable-lalinspiral
 make -j install
 cd ..
-
+set -x
 cp local/lib/python2.7/site-packages/lal/_lal.so blal/_lal.so
 cp local/lib/python2.7/site-packages/lalframe/_lalframe.so blal/_lalframe.so
 cp local/lib/python2.7/site-packages/lalsimulation/_lalsimulation.so blal/_lalsimulation.so
