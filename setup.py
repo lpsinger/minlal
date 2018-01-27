@@ -8,12 +8,12 @@ class bdist_wheel(_bdist_wheel):
         self.root_is_pure = False
 
 setup(name='lal',
-      version='0.0.7',
+      version='0.0.8',
       description='LIGO Algorithm Library for Python',
       author='Alex Nitz',
       author_email='alex.nitz@aei.mpg.de',
       install_requires=['numpy==1.13.0'],
-      package_data={'blal': ['*.so*']},
+      package_data={'blal': ['*.so*', '*.dylib']},
       packages=['lal', 'lalsimulation', 'lalframe', 'blal'],
       cmdclass={'bdist_wheel': bdist_wheel},
      )
