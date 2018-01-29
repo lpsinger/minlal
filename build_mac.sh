@@ -62,9 +62,13 @@ git checkout lalsuite-v$LALSUITE_VERSION
 make -j install
 cd ..
 set -x
+
 cp local/lib/python2.7/site-packages/lal/_lal.so blal/_lal.so
+install_name_tool -add_rpath "@loader_path" blal/_lal.so
 cp local/lib/python2.7/site-packages/lalframe/_lalframe.so blal/_lalframe.so
+install_name_tool -add_rpath "@loader_path" blal/_lalframe.so
 cp local/lib/python2.7/site-packages/lalsimulation/_lalsimulation.so blal/_lalsimulation.so
+install_name_tool -add_rpath "@loader_path" blal/_lalsimulation.so
 
 delocate-listdeps blal > maclibs
 
