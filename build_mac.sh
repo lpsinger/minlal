@@ -80,4 +80,9 @@ do
     install_name_tool -add_rpath "@loader_path" blal/$file
     echo $file
 done < maclibs
+
+cd blal
+python ../fixup_libs.py
+cd ..
+
 ls blal
