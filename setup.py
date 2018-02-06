@@ -8,7 +8,7 @@ class bdist_wheel(_bdist_wheel):
         self.root_is_pure = False
 
 setup(name='lal',
-      version='0.0.10',
+      version='6.48.post1',
       description='LIGO Algorithm Library for Python',
       author='Alex Nitz',
       author_email='alex.nitz@aei.mpg.de',

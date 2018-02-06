@@ -1,4 +1,4 @@
-LALSUITE_VERSION=6.48
+LALSUITE_VERSION=$(python setup.py --version | sed 's/\.post.*$//')
 
 mkdir local
 export PATH=$PATH:/opt/python/cp27-cp27mu/bin/:$PWD/local/bin
