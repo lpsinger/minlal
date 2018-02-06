@@ -1,3 +1,5 @@
+set -ex
+
 LALSUITE_VERSION=6.48
 
 mkdir local
