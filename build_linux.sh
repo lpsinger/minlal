@@ -1,3 +1,5 @@
+set -ex
+
 LALSUITE_VERSION=$(python setup.py --version | sed 's/\.post.*$//')
 
 mkdir local

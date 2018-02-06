@@ -1,3 +1,5 @@
+set -ex
+
 # I have no idea how to build things on mac, this is going to be rough....
 LALSUITE_VERSION=$(python setup.py --version | sed 's/\.post.*$//')
 mkdir local

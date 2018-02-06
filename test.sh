@@ -1,4 +1,4 @@
-set -e
+set -ex
 export PATH=$PATH:$PWD/local/bin:$HOME/Library/Python/2.7/bin:$HOME/.local/bin
 
 python setup.py bdist_wheel
