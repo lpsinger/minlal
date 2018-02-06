@@ -1,7 +1,7 @@
 LALSUITE_VERSION=6.48
 
 mkdir local
-export PATH=$PATH:/opt/python/cp27-cp27mu/bin/:$PWD/local/bin
+export PATH=$PATH:/opt/python/cp34-cp34mu/bin/:$PWD/local/bin
 export PKG_CONFIG_PATH=$PWD/local/lib/pkgconfig
 
 yum install -y zlib-devel gsl-devel *fftw3* *pcre* mlocate chrpath

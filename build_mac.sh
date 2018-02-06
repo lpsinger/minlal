@@ -2,7 +2,7 @@
 LALSUITE_VERSION=6.48
 mkdir local
 
-export PATH=$PATH:$PWD/local/bin:$HOME/Library/Python/2.7/bin
+export PATH=$PATH:$PWD/local/bin:$HOME/Library/Python/3.4/bin
 export PKG_CONFIG_PATH=$PWD/local/lib/pkgconfig
 
 brew update
@@ -11,8 +11,8 @@ brew install fftw hdf5 gsl zlib swig gsl
 wget https://bootstrap.pypa.io/get-pip.py
 python get-pip.py --user
 
-ls $HOME/Library/Python/2.7
-ls $HOME/Library/Python/2.7/bin
+ls $HOME/Library/Python/3.4
+ls $HOME/Library/Python/3.4/bin
 
 
 # Install numpy
@@ -63,11 +63,11 @@ make -j install
 cd ..
 set -x
 
-cp local/lib/python2.7/site-packages/lal/_lal.so blal/_lal.so
+cp local/lib/python3.4/site-packages/lal/_lal.so blal/_lal.so
 install_name_tool -add_rpath "@loader_path" blal/_lal.so
-cp local/lib/python2.7/site-packages/lalframe/_lalframe.so blal/_lalframe.so
+cp local/lib/python3.4/site-packages/lalframe/_lalframe.so blal/_lalframe.so
 install_name_tool -add_rpath "@loader_path" blal/_lalframe.so
-cp local/lib/python2.7/site-packages/lalsimulation/_lalsimulation.so blal/_lalsimulation.so
+cp local/lib/python3.4/site-packages/lalsimulation/_lalsimulation.so blal/_lalsimulation.so
 install_name_tool -add_rpath "@loader_path" blal/_lalsimulation.so
 
 delocate-listdeps blal > maclibs

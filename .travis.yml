@@ -5,10 +5,10 @@ language: python
 matrix:
   include:
     - os: linux
-      python: 2.7
+      python: 3.4
     - os: osx
       language: generic
-      env: TOXENV=py27
+      env: TOXENV=py34
       osx_image: xcode8
 
 services:
@@ -24,7 +24,7 @@ script:
 
 before_deploy:
  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then 
-        export PATH=$PATH:$PWD/local/bin:/Users/travis/Library/Python/2.7/bin; 
+        export PATH=$PATH:$PWD/local/bin:/Users/travis/Library/Python/3.4/bin; 
         ls; 
    fi
 

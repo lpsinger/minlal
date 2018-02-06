@@ -1,5 +1,5 @@
 set -e
-export PATH=$PATH:$PWD/local/bin:$HOME/Library/Python/2.7/bin:$HOME/.local/bin
+export PATH=$PATH:$PWD/local/bin:$HOME/Library/Python/3.4/bin:$HOME/.local/bin
 
 python setup.py bdist_wheel
 ls dist
