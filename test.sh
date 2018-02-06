@@ -6,6 +6,6 @@ ls dist
 
 virtualenv env
 source env/bin/activate
-pip install dist/*.whl
+pip install -q dist/*.whl
 
 python test.py

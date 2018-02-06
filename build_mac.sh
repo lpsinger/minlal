@@ -8,7 +8,7 @@ export PKG_CONFIG_PATH=$PWD/local/lib/pkgconfig
 brew update
 brew install fftw hdf5 gsl zlib swig gsl
 
-wget https://bootstrap.pypa.io/get-pip.py
+wget -q https://bootstrap.pypa.io/get-pip.py
 python get-pip.py --user
 
 ls $HOME/Library/Python/2.7
@@ -16,18 +16,18 @@ ls $HOME/Library/Python/2.7/bin
 
 
 # Install numpy
-pip install --user numpy=='1.13.0' delocate virtualenv wheel twine
+pip install -q --user numpy=='1.13.0' delocate virtualenv wheel twine
 
 # Libz (maybe needed for Mac < 10.12
-curl https://codeload.github.com/madler/zlib/tar.gz/v1.2.11 > v1.2.11.tar.gz
-tar -xvf v1.2.11.tar.gz 
+curl -s https://codeload.github.com/madler/zlib/tar.gz/v1.2.11 > v1.2.11.tar.gz
+tar -xf v1.2.11.tar.gz
 cd zlib-1.2.11/
 ./configure --prefix=$PWD/../local
 make -j install
 cd ../
 
 # Install libframe
-curl http://lappweb.in2p3.fr/virgo/FrameL/libframe-8.30.tar.gz > libframe.tar.gz
+curl -s http://lappweb.in2p3.fr/virgo/FrameL/libframe-8.30.tar.gz > libframe.tar.gz
 tar -xf libframe.tar.gz
 cd libframe-*
 ./configure --prefix=$PWD/../local
@@ -35,7 +35,7 @@ make -j install
 cd ../
 
 # Install libmetaio
-curl http://software.ligo.org/lscsoft/source/metaio-8.4.0.tar.gz > metaio.tar.gz
+curl -s http://software.ligo.org/lscsoft/source/metaio-8.4.0.tar.gz > metaio.tar.gz
 tar -xf metaio.tar.gz
 cd metaio-*
 ./configure --prefix=$PWD/../local
@@ -43,9 +43,9 @@ make -j install
 cd ../
 
 # Install lalsuite
-git clone https://github.com/lscsoft/lalsuite.git
+git clone -q https://github.com/lscsoft/lalsuite.git
 cd lalsuite
-git checkout lalsuite-v$LALSUITE_VERSION
+git checkout -q lalsuite-v$LALSUITE_VERSION
 
 ./00boot
 ./configure \

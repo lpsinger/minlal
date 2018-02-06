@@ -15,7 +15,7 @@ services:
  - docker
 
 before_install:
- - if [[ "$TRAVIS_OS_NAME" == "linux" ]];then docker pull quay.io/pypa/manylinux1_x86_64; fi
+ - if [[ "$TRAVIS_OS_NAME" == "linux" ]];then docker pull quay.io/pypa/manylinux1_x86_64 > /dev/null; fi
  - if [[ "$TRAVIS_OS_NAME" == "linux" ]];then docker run -v $PWD:/project quay.io/pypa/manylinux1_x86_64 sh project/build_linux.sh; fi
  - if [[ "$TRAVIS_OS_NAME" == "osx" ]];then bash build_mac.sh; fi
 
