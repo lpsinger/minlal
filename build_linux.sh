@@ -1,7 +1,5 @@
 set -ex
 
-LALSUITE_VERSION=$(python setup.py --version | sed 's/\.post.*$//')
-
 mkdir local
 export PATH=$PATH:/opt/python/cp27-cp27mu/bin/:$PWD/local/bin
 export PKG_CONFIG_PATH=$PWD/local/lib/pkgconfig

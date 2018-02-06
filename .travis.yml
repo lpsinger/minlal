@@ -15,8 +15,9 @@ services:
  - docker
 
 before_install:
+ - export LALSUITE_VERSION=$(python setup.py --version | sed 's/\.post.*$//')
  - if [[ "$TRAVIS_OS_NAME" == "linux" ]];then docker pull quay.io/pypa/manylinux1_x86_64; fi
- - if [[ "$TRAVIS_OS_NAME" == "linux" ]];then docker run -v $PWD:/project quay.io/pypa/manylinux1_x86_64 sh project/build_linux.sh; fi
+ - if [[ "$TRAVIS_OS_NAME" == "linux" ]];then docker run -e LALSUITE_VERSION -v $PWD:/project quay.io/pypa/manylinux1_x86_64 sh project/build_linux.sh; fi
  - if [[ "$TRAVIS_OS_NAME" == "osx" ]];then bash build_mac.sh; fi
 
 script:
